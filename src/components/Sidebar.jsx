@@ -1,3 +1,4 @@
+
 import {
   LayoutDashboard,
   ShoppingCart,
@@ -11,16 +12,18 @@ import {
   PlusCircle
 } from "lucide-react";
 
+import { NavLink } from "react-router-dom";
+
 const menuItems = [
-  { name: "Dashboard", icon: LayoutDashboard },
-  { name: "Purchase Orders", icon: ShoppingCart },
-  { name: "Medicines", icon: Pill },
-  { name: "Sales / Billing", icon: Receipt },
-  { name: "Inventory", icon: Package },
-  { name: "Suppliers", icon: Truck },
-  { name: "Reports", icon: BarChart3 },
-  { name: "Profile", icon: User },
-  { name: "Settings", icon: Settings }
+  { name: "Dashboard", icon: LayoutDashboard, path: "/" },
+  { name: "Purchase Orders", icon: ShoppingCart, path: "/orders" },
+  { name: "Medicines", icon: Pill, path: "/medicines" },
+  { name: "Sales / Billing", icon: Receipt, path: "/billing" },
+  { name: "Inventory", icon: Package, path: "/inventory" },
+  { name: "Suppliers", icon: Truck, path: "/suppliers" },
+  { name: "Reports", icon: BarChart3, path: "/reports" },
+  { name: "Profile", icon: User, path: "/profile" },
+  { name: "Settings", icon: Settings, path: "/settings" }
 ];
 
 export default function Sidebar() {
@@ -37,18 +40,21 @@ export default function Sidebar() {
       </div>
 
       <nav className="sidebar-menu">
-        {menuItems.map((item, index) => {
+        {menuItems.map((item) => {
           const Icon = item.icon;
 
           return (
-            <a
-              href="#"
+            <NavLink
+              to={item.path}
               key={item.name}
-              className={`menu-item ${index === 0 ? "active" : ""}`}
+              end={item.path === "/"}
+              className={({ isActive }) =>
+                `menu-item ${isActive ? "active" : ""}`
+              }
             >
               <Icon size={20} />
               <span>{item.name}</span>
-            </a>
+            </NavLink>
           );
         })}
       </nav>

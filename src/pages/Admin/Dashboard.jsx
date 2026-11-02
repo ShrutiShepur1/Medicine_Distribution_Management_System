@@ -7,7 +7,13 @@ import {
   ShoppingCart, Pill, IndianRupee, Package, AlertTriangle,
   Calendar, ArrowRight, Zap, BarChart3,
 } from "lucide-react";
-import { salesTrend, categories, recentOrders, topMedicines } from "../data/mockData";
+
+import {
+  salesTrend,
+  categories,
+  recentOrders,
+  topMedicines
+} from "../../data/mockData";
 
 const StatCard = ({ icon: Icon, label, value, link, to, color }) => (
   <div className={`stat-card ${color}`}>

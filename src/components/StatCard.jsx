@@ -1,3 +1,4 @@
+
 export default function StatCard({
   title,
   value,
@@ -6,16 +7,24 @@ export default function StatCard({
   action
 }) {
   return (
-    <div className={`stat-card ${color}`}>
+    <div className={`stat-card ${color || "blue"}`}>
+
       <div className="stat-icon">
-        <Icon size={27} />
+        {Icon && <Icon size={27} />}
       </div>
 
       <div className="stat-info">
         <p>{title}</p>
-        <h2>{value}</h2>
-        <span>{action} →</span>
+
+        <h2>
+          {value ?? 0}
+        </h2>
+
+        <span>
+          {action} →
+        </span>
       </div>
+
     </div>
   );
 }

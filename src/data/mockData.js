@@ -32,3 +32,11 @@ export const topMedicines = [
   { name: "Metformin 500mg", category: "Diabetes Care", sold: 720 },
   { name: "Omeprazole 20mg", category: "Acidity", sold: 650 },
 ];
+
+
+export const dashboardStats = {
+  totalOrders: 12,
+  totalMedicines: 156,
+  todaySales: 18450,
+  lowStockItems: 8
+};

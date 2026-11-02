@@ -1,3 +1,4 @@
+
 import {
   ResponsiveContainer,
   LineChart,
@@ -12,47 +13,28 @@ import {
   Legend
 } from "recharts";
 
-const salesData = [
-  { day: "24 Oct", sales: 6000 },
-  { day: "25 Oct", sales: 10000 },
-  { day: "26 Oct", sales: 7500 },
-  { day: "27 Oct", sales: 11000 },
-  { day: "28 Oct", sales: 18500 },
-  { day: "29 Oct", sales: 13000 },
-  { day: "30 Oct", sales: 15800 }
-];
-
-const categoryData = [
-  { name: "Pain Relief", value: 28 },
-  { name: "Antibiotics", value: 20 },
-  { name: "Vitamins", value: 15 },
-  { name: "Diabetes Care", value: 12 },
-  { name: "Respiratory", value: 10 },
-  { name: "Others", value: 15 }
-];
-
-const COLORS = [
-  "#3182f6",
-  "#36c77a",
-  "#ffc52e",
-  "#8057f5",
-  "#13b8c9",
-  "#f16b9b"
-];
+import { salesTrend, categories } from "../data/mockData";
 
 export default function Charts() {
   return (
     <div className="charts-grid">
 
+      {/* Sales Trend */}
       <div className="chart-card">
         <h3>📈 Sales Trend</h3>
 
         <ResponsiveContainer width="100%" height={260}>
-          <LineChart data={salesData}>
+          <LineChart data={salesTrend}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="day" />
             <YAxis />
-            <Tooltip />
+
+            <Tooltip
+              formatter={(value) =>
+                `₹ ${Number(value).toLocaleString("en-IN")}`
+              }
+            />
+
             <Line
               type="monotone"
               dataKey="sales"
@@ -65,13 +47,14 @@ export default function Charts() {
         </ResponsiveContainer>
       </div>
 
+      {/* Medicine Categories */}
       <div className="chart-card">
         <h3>💊 Medicine Category Distribution</h3>
 
         <ResponsiveContainer width="100%" height={260}>
           <PieChart>
             <Pie
-              data={categoryData}
+              data={categories}
               dataKey="value"
               nameKey="name"
               cx="50%"
@@ -80,10 +63,10 @@ export default function Charts() {
               innerRadius={55}
               paddingAngle={3}
             >
-              {categoryData.map((item, index) => (
+              {categories.map((item) => (
                 <Cell
                   key={item.name}
-                  fill={COLORS[index]}
+                  fill={item.color}
                 />
               ))}
             </Pie>
